@@ -5,7 +5,7 @@
 using namespace std;
 // Êı×éÀà
 bool Find(int target, vector<vector<int>> array);
-
+void replaceSpace(char *str, int length);
 #endif
 
 

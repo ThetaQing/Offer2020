@@ -1,6 +1,7 @@
 #include <iostream>
 #include "MyArray.h"
 #include <vector>
+#include <string.h>
 using namespace std;
 /****************函数说明*****************
 * 问题描述：
@@ -37,4 +38,39 @@ bool Find(int target, vector<vector<int> > array) {
 			row -= 1;  // 排除该行            
 	}
 	return 0;
+}
+
+/******************函数说明***************
+* 问题描述：
+	请实现一个函数，将一个字符串中的每个空格替换成“%20”。
+	例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。
+* 函数名：void replaceSpace(char *str, int length) 
+* 函数参数：一个字符串，字符串长度
+* 实现算法：分配一个原字符串长度2倍的字符串空间，遍历字符串，若该字符是空格字符，新字符串就用"%20"代替，否则，新字符用
+	原字符赋值；然后将新字符串末尾取结束符'\0'；最后，用新字符给原字符赋值。
+*/
+
+void replaceSpace(char *str, int length) 
+{
+	char* tmp = new char[length*2]; 
+	int k = 0;    
+	for (int i = 0; i < length; i++) 
+	{ 
+		if (' ' == str[i]) 
+		{ 
+			tmp[k++] = '%';
+			tmp[k++] = '2';     
+			tmp[k++] = '0'; 
+		}
+		else 
+		{ 
+			tmp[k++] = str[i];
+		} 
+	}        
+	tmp[k] = '\0';       
+	for (int i = 0; i < k; i++) 
+	{ 
+		str[i] = tmp[i]; 
+	}
+	delete[] tmp;
 }
