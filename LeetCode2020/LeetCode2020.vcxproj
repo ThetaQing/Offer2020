@@ -119,11 +119,11 @@
     <None Include="readme.md" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MyArray.cpp" />
+    <ClCompile Include="MySolutionForOffer67.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MyArray.h" />
+    <ClInclude Include="MySolutionForOffer67.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

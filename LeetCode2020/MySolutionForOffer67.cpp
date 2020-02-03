@@ -1,5 +1,5 @@
 #include <iostream>
-#include "MyArray.h"
+#include "MySolutionForOffer67.h"
 #include <vector>
 #include <string.h>
 using namespace std;
@@ -77,7 +77,7 @@ void replaceSpace(char *str, int length)
 	delete[] tmp;
 }
 
-/*******************************
+/****************函数说明***************
 * 问题描述：输入一个链表，按链表从尾到头的顺序返回一个ArrayList。
 * 函数名：vector<int> printListFromTailToHead(ListNode* head) 
 * 函数参数：输入一个链表
@@ -95,4 +95,57 @@ vector<int> printListFromTailToHead(ListNode* head) {
 		
 	}
 	return ans;
+}
+
+/*****************函数说明****************
+* 问题描述：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。
+假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
+例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。
+* 函数名：TreeNode* reConstructBinaryTree(vector<int> pre, vector<int> vin)
+* 函数参数：二叉树的前序遍历、中序遍历
+* 函数返回值：二叉树的根节点
+* 实现算法：先从前序遍历中找到根节点；
+	再根据根节点将中序遍历分为左子树（根节点左边的元素）和右子树（根节点右边的元素）；
+	最后递归实现左右节点。
+**/
+TreeNode* reConstructBinaryTree(vector<int> pre, vector<int> vin) {
+	if (!pre.size())
+		return NULL;
+	
+	TreeNode *root = new TreeNode(pre[0]);
+	vector<int> pre_left, pre_right, vin_left, vin_right;  // 分别表示以根节点为界，前序遍历的左节点、右节点和中序遍历的左节点、右节点
+	// 因为不含重复数字，所以可以直接查找
+
+	// 先找到根节点的索引
+	int index = 0;
+	for (int i = 0; i < pre.size(); ++i)
+	{
+		if (vin[i] == pre[0])
+		{
+			index = i;
+			break;
+		}
+	}
+	// 将左右子树分割开
+	for (int i = 0; i < index; ++i)
+	{
+		// 左子树
+		pre_left.push_back(pre[i + 1]);
+		vin_left.push_back(vin[i]);
+		
+	}
+	for (int i = index + 1; i < pre.size(); ++i)
+	{
+		// 右子树
+		pre_right.push_back(pre[i]);
+		vin_right.push_back(vin[i]);
+	}
+
+	// 递归
+	root->left = reConstructBinaryTree(pre_left, vin_left);
+	root->right = reConstructBinaryTree(pre_right, vin_right);
+	// 返回
+	return root;
+	
+
 }
