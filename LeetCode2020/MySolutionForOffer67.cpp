@@ -2,6 +2,7 @@
 #include "MySolutionForOffer67.h"
 #include <vector>
 #include <string.h>
+#include <stack>
 using namespace std;
 /****************函数说明*****************
 * 问题描述：
@@ -149,3 +150,91 @@ TreeNode* reConstructBinaryTree(vector<int> pre, vector<int> vin) {
 	
 
 }
+
+/***************函数说明***************
+* 问题描述：用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
+* 函数名：void push(int Nod);int pop()
+* 函数参数： 待入队的值；空
+* 函数返回值：空； 队头元素
+* 实现思路：实际上就是个汉诺塔模型，原来是从头到尾，变为从尾到头，但是只有两个栈；
+	stack1栈功能，入栈的时候直接入栈，出栈的时候要出的元素在栈底，所以先把所有元素转移到stack2，然后pop出stack2的栈顶元素
+	最后再把stack2的所有元素重新入栈到stack1.
+
+*/
+void Solution::push(int Node)
+{
+	stack1.push(Node);
+}
+int Solution::pop()
+{
+	
+		if (stack1.empty())
+		{
+			return 0;
+		}
+		int ans = 0;
+		while (!stack1.empty())
+		{
+			int tmp = stack1.top();
+			stack1.pop();
+			stack2.push(tmp);
+		}
+		if (!stack2.empty())
+		{
+			ans = stack2.top();
+			stack2.pop();
+
+		}
+		while (!stack2.empty())
+		{
+			int tmp = stack2.top();
+			stack2.pop();
+			stack1.push(tmp);
+		}
+		return ans;
+
+	
+}
+
+/***************函数说明*************
+* 问题描述：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。
+输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。
+例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。
+* 函数名：
+* 函数参数：
+* 函数返回值：
+* 实现算法：
+
+*/
+int Solution::minNumberInRotateArray(vector<int> rotateArray)
+{
+	if (rotateArray.empty())
+		return 0;
+	int minNumber = *min_element(rotateArray.begin(), rotateArray.end());
+
+	int minIndex = 0;
+	for (minIndex = 0; minIndex < rotateArray.size(); ++minIndex)
+	{
+		if (rotateArray[minIndex] != minNumber)
+		{
+			tempStore.push(rotateArray[minIndex]);  // 入队
+		}
+		else
+			break;
+	}
+	if (minIndex == 0)  // 判断是否是第一个元素
+		return minNumber;
+	rotateArray.erase(rotateArray.begin(), rotateArray.begin() + minIndex - 1);
+	while(!tempStore.empty())
+	{
+		int temp = tempStore.front();
+		tempStore.pop();
+
+		rotateArray.push_back(temp);
+	}
+	return minNumber;
+
+
+}
+
+
