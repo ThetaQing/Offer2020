@@ -50,6 +50,11 @@ double Power(double base, int exponent);
 void reOrderArray(vector<int> &array);
 ListNode* FindKthToTail(ListNode* pListHead, unsigned int k);
 ListNode* ReverseList(ListNode* pHead);
+ListNode* Merge(ListNode* pHead1, ListNode* pHead2);
+bool HasSubtree(TreeNode* pRoot1, TreeNode* pRoot2);
+bool isEquals(TreeNode* pRoot1, TreeNode* pRoot2);
+void Mirror(TreeNode *pRoot);
+vector<int> printMatrix(vector<vector<int> > matrix);
 #endif
 
 

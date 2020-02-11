@@ -387,9 +387,10 @@ ListNode* FindKthToTail(ListNode* pListHead, unsigned int k)
 /****************函数说明***************
 * 问题描述：输入一个链表，反转链表后，输出新链表的表头。
 * 函数名：ListNode* ReverseList(ListNode* pHead) 
-* 函数参数：
-* 函数返回值：
-* 函数实现：
+* 函数参数：链表头节点
+* 函数返回值：反转链表后的新头节点
+* 函数实现：三个节点，分别表示新头节点的前一个节点before、新头节点newhead、新头节点的后一个节点next；
+			将before和newHead反转，三个节点向前移一个位置
 
 
 */
@@ -407,6 +408,8 @@ ListNode* ReverseList(ListNode* pHead)
 		next = newHead->next;  // 后一个节点
 
 		newHead->next = before;  // 将头节点与前一个节点反转
+
+		// 向前移一个节点
 		before = newHead;  // 前一个节点
 		newHead = next;  // 将头节点转移到下一个节点
 		
@@ -415,4 +418,154 @@ ListNode* ReverseList(ListNode* pHead)
 	newHead = before;
 	return newHead;
 	
+}
+
+/***************函数说明*****************
+* 问题描述：输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。
+* 函数名：ListNode* Merge(ListNode* pHead1, ListNode* pHead2)
+* 函数参数：两个单调递增的链表的头节点
+* 函数返回值：新链表的头节点
+* 实现方法：虚拟头节点法，每次选择小的，记住要用next添加，否则就无法实现追踪
+
+**/
+ListNode* Merge(ListNode* pHead1, ListNode* pHead2)
+{
+	ListNode * list1 = pHead1, *list2 = pHead2, *ansHead = new ListNode(0), *temp = ansHead;  // 建立一个虚拟头节点
+	while (list1 != NULL && list2 != NULL)
+	{
+		if (list1->val < list2->val)  // 选择小的
+		{
+			temp->next = list1;  // 要用next指针，否则就无法追踪
+			list1 = list1->next;
+			
+		}
+		else
+		{
+			temp->next = list2;
+			list2 = list2->next;
+		}
+		temp = temp->next;
+	}
+	if (list1)  // 剩余部分
+		temp->next = list1;
+	else
+		temp->next = list2;
+	return ansHead->next;
+}
+
+/***************函数说明***************
+* 问题描述：输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）
+* 函数名：bool HasSubtree(TreeNode* pRoot1, TreeNode* pRoot2)
+* 函数参数：两个树的根节点
+* 函数返回值：B是否是A的子结构
+* 实现方法：
+	先捋清楚：
+	1、子结构可能出现的情况：从A的根节点开始；从A的左节点开始； 从A的右节点
+	2、结构相同时根节点、左节点、右节点对应相等
+
+	辅助函数：
+	遍历两棵树，比较两棵树的根节点、左节点、右节点是否对应相等
+
+*/
+bool HasSubtree(TreeNode* pRoot1, TreeNode* pRoot2)
+{
+	if (!pRoot1 || !pRoot2)
+		return 0;  // 有一个为空树就直接返回
+
+	return isEquals(pRoot1, pRoot2) || HasSubtree(pRoot1->left, pRoot2) || HasSubtree(pRoot1->right, pRoot2);
+
+}
+
+
+bool isEquals(TreeNode* pRoot1, TreeNode* pRoot2)
+{
+	if (!pRoot1 && !pRoot2)  // 两个空
+		return 1;
+	else if (pRoot1 && pRoot2)  // 两个非空
+		return (pRoot1->val == pRoot2->val) && isEquals(pRoot1->left, pRoot2->left) && isEquals(pRoot1->right, pRoot2->right);
+	else  // 一个空一个非空
+		return 0;
+}
+
+/************函数说明***********
+* 问题描述：操作给定的二叉树，将其变换为源二叉树的镜像。
+* 函数名：void Mirror(TreeNode *pRoot)
+* 函数参数：二叉树的根节点
+* 函数返回值：空
+* 实现方法：1、如果仅有根节点或空树，直接返回；
+			2、将根节点左右节点镜像；
+			3、递归根节点的左子树和右子树
+
+
+*/
+void Mirror(TreeNode *pRoot)
+{
+	if (pRoot == NULL || (pRoot->left == NULL && pRoot->right == NULL))  // 只有根节点或空树
+		return ;
+	TreeNode *left = pRoot->left, *right = pRoot->right, *root = pRoot;
+	if (root != NULL)
+	{
+		root->left = right;
+		root->right = left;
+	}
+
+	Mirror(root->left);
+	Mirror(root->right);
+}
+
+/****************函数说明*****************
+* 问题描述：输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下4 X 4矩阵：
+			1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 
+			则依次打印出数字
+			1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10.
+* 函数名： vector<int> printMatrix(vector<vector<int> > matrix)
+* 函数参数：
+* 函数返回值：
+* 实现方法：
+
+*/
+vector<int> printMatrix(vector<vector<int> > matrix)
+{
+	vector<int> ans;
+	
+	int row = matrix.size();
+	if (row == 0)
+		return ans;
+	int column = matrix[0].size();
+	if (column == 0)
+		return ans;
+	int count = 0;
+	while (row > 0 || column > 0)
+	{
+		int i = 0, j = 0;
+		int temp;
+		
+		for (i = count, j = count; j < column; ++j)  // 上
+		{
+			temp = matrix[i][j];
+			ans.push_back(temp);
+		}
+		for (j = column - 1, i = count + 1; i < row; ++i)  // 右
+		{
+			temp = matrix[i][j];
+			ans.push_back(temp);
+		}
+
+		for (j = column - 2, i = row - 1; j >= count; --j)  // 下
+		{
+			temp = matrix[i][j];
+			ans.push_back(temp);
+		}
+
+		for (i = row - 2, j = count; i > count; --i)  // 左
+		{
+			temp = matrix[i][j];
+			ans.push_back(temp);
+		}
+		count += 1;
+		row -= 1; 
+		column -= 1;
+	}
+	return ans;
+
 }

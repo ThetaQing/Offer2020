@@ -26,14 +26,21 @@ int main(int argc, char** argv)
 	reOrderArray(arr);
 	for (auto i : arr)
 		cout << i;
-	*/
-	ListNode Node0(0), Node1(1), Node2(2), Node3(3), Node4(4), Node5(5);
+	// Á´±í²âÊÔ
+	ListNode Node0(1), Node1(2), Node2(4), Node3(7), Node4(3), Node5(6);
 	Node0.next = &Node1; 
 	Node1.next = &Node2;
 	Node2.next = &Node3;
-	Node3.next = &Node4; 
+	// Node3.next = &Node4; 
 	Node4.next = &Node5;
-	ReverseList(&Node0);
+	Merge(&Node0, &Node4);*/
+	vector<int> row1 = { 1,2,3,4 };
+	vector<int> row2 = { 5,6,7,8 };
+	vector<int> row3 = { 9,10,11,12 };
+	vector<int> row4 = { 13,14,15,16 };
+	vector<int> row5 = { 17,18,19,20 };
+	vector<vector<int>> matrix = { row1, row2, row3, row4, row5 };
+	printMatrix(matrix);
 	cin.get();
 	
 	return 0;
