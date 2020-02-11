@@ -3,6 +3,8 @@
 #include <vector>
 #include <string.h>
 #include <stack>
+#include <algorithm>
+#include <bitset>
 using namespace std;
 /****************函数说明*****************
 * 问题描述：
@@ -236,5 +238,181 @@ int Solution::minNumberInRotateArray(vector<int> rotateArray)
 
 
 }
+/**************函数说明***************
+* 问题描述：一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
+* 函数名：int jumpFloorII(int number)
+* 函数参数：台阶数
+* 函数返回值：跳n级台阶的跳法
+* 函数实现：f(n) = f(n-1)+f(n-2)+……+f(2)+f(1)
+
+*/
+int jumpFloorII(int number) {
+
+	return pow(2, number - 1);
+
+}
+
+/****************函数说明***************
+* 问题描述：我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。
+			请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？
+* 函数名：int rectCover(int number)
+* 函数参数：大矩形的长
+* 函数返回值：覆盖的方法总数
+* 函数实现：递归，拆解成2*2小矩形
 
 
+*/
+int rectCover(int number) {
+	if (number == 0)
+		return 0;
+	if (number == 1)
+		return 1;
+	if (number == 2)
+		return 2;
+	return rectCover(number - 1) + rectCover(number - 2);
+
+}
+
+
+/***************函数说明***************
+* 问题描述：输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。
+* 函数名：int  NumberOf1(int n)
+* 函数参数：输入一个整数
+* 函数返回值：
+* 实现方法：
+
+*/
+int  NumberOf1(int n)
+{
+	bitset<sizeof(int) * 8> bitN(n);
+	cout << bitN  << endl;
+
+	return bitN.count();
+
+}
+
+/****************函数说明********************
+* 问题描述：给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。 
+
+			保证base和exponent不同时为0 
+* 函数名：double Power(double base, int exponent)
+* 函数参数：浮点数base；整数exponent
+* 函数返回值：base的exponent次方
+* 实现算法：库函数pow
+
+***/
+double Power(double base, int exponent)
+{
+	return pow(base, exponent);
+}
+
+/*************函数说明*************
+* 问题描述：输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，
+			所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。
+* 函数名：void reOrderArray(vector<int> &array)
+* 函数参数：整数数组
+* 函数返回值：空
+* 实现算法：准备两个队列，odd存储奇数，even存储偶数，全部存储完后清空数组，再按顺序放入数组中
+*/
+void reOrderArray(vector<int> &array)
+{
+	queue<int> odd, even;
+	for (auto number : array)
+	{
+		if (number % 2)  // 奇数
+			odd.push(number);
+		else  // 偶数
+			even.push(number);
+
+	}
+	array.clear();  // 清空数组
+	while (!odd.empty())
+	{
+		int temp = odd.front();  // 队头元素
+		odd.pop();
+		array.push_back(temp);
+	}
+	while (!even.empty())
+	{
+		int temp = even.front();
+		even.pop();
+		array.push_back(temp);
+	}
+}
+
+/*************函数说明************
+* 问题描述：输入一个链表，输出该链表中倒数第k个结点。
+* 函数名：
+* 函数参数：
+* 函数返回值：
+* 实现方法：倒数第k个就是正数第len-k-1个，可是为什么不对呢
+
+
+ListNode* FindKthToTail(ListNode* pListHead, unsigned int k)
+{
+	int len = 0;
+	ListNode *temp = pListHead;
+	while (temp != NULL)
+	{
+		len += 1;
+		temp = temp->next;
+	}
+	cout << "链表长度：" << len << endl;
+	temp = pListHead;
+
+	for (int i = 0; i < len - k; ++i)
+	{
+		temp = temp->next;
+	}
+	return temp;
+
+}*/
+// 双指针法，还是不对？？？
+ListNode* FindKthToTail(ListNode* pListHead, unsigned int k)
+{
+	ListNode *fast = pListHead, *low = pListHead;
+	for (int i = 0; i < k; ++i)
+	{
+		fast = fast->next;
+	}
+	while (fast != NULL)
+	{		
+		fast = fast->next; 
+		low = low->next;
+
+	}
+	return low;
+}
+
+/****************函数说明***************
+* 问题描述：输入一个链表，反转链表后，输出新链表的表头。
+* 函数名：ListNode* ReverseList(ListNode* pHead) 
+* 函数参数：
+* 函数返回值：
+* 函数实现：
+
+
+*/
+ListNode* ReverseList(ListNode* pHead)
+{
+	if (pHead == NULL || pHead->next == NULL)
+		return pHead;
+	   		
+	ListNode* newHead = pHead, *next = pHead->next, *before = pHead;
+	pHead->next = NULL;  // 原头节点的next变为空
+	while (newHead != NULL && next != NULL)
+	{
+		
+		newHead = next;  // 头节点
+		next = newHead->next;  // 后一个节点
+
+		newHead->next = before;  // 将头节点与前一个节点反转
+		before = newHead;  // 前一个节点
+		newHead = next;  // 将头节点转移到下一个节点
+		
+		
+	}
+	newHead = before;
+	return newHead;
+	
+}

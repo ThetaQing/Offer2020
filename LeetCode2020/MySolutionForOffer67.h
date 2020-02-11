@@ -22,6 +22,7 @@ struct TreeNode {
 };
 
 // 类的声明
+// 两个栈实现队列
 class Solution
 {
 public:
@@ -41,8 +42,14 @@ private:
 bool Find(int target, vector<vector<int>> array);
 void replaceSpace(char *str, int length);
 vector<int> printListFromTailToHead(ListNode* head);
-TreeNode* reConstructBinaryTree(vector<int> pre, vector<int> vin);
-
+TreeNode* reConstructBinaryTree(vector<int> pre, vector<int> vin);  // 前序遍历和中序遍历重建二叉树
+int rectCover(int number);  // 矩形覆盖
+int jumpFloorII(int number);  // 疯狂跳台阶，一次可最多跳number下
+int  NumberOf1(int n);
+double Power(double base, int exponent);
+void reOrderArray(vector<int> &array);
+ListNode* FindKthToTail(ListNode* pListHead, unsigned int k);
+ListNode* ReverseList(ListNode* pHead);
 #endif
 
 
