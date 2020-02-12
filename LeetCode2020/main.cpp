@@ -39,7 +39,7 @@ int main(int argc, char** argv)
 	vector<int> row3 = { 9,10,11,12 };
 	vector<int> row4 = { 13,14,15,16 };
 	vector<int> row5 = { 17,18,19,20 };
-	vector<vector<int>> matrix = { row1, row2, row3, row4, row5 };
+	vector<vector<int>> matrix = { row1, row2 , row3 , row4, row5};
 	printMatrix(matrix);
 	cin.get();
 	

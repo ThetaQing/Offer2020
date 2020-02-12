@@ -38,6 +38,45 @@ private:
 	queue<int> tempStore;
 
 };
+
+// 定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。
+class minStack {
+	stack<int> mystack;
+	int mymin, mytop;
+public:
+	void push(int value) {
+		if (mystack.empty())
+			mymin = value;
+		mystack.push(value - mymin);  // 入栈的值减去当前最小值
+		if (value - mymin < 0)  // 如果入栈的值比当前最小值小，更新最小值
+			mymin = value;
+		// 更新top值
+		mytop = value;
+	}
+	void pop() {
+
+		if (!mystack.empty())  // 如果非空
+		{
+			if (mystack.top() < 0)  // 说明此时pop出去的是最小值
+			{
+				mymin = mymin - mystack.top();  // 原来的最小值等于现在的最小值 - 差值（负的）
+			}
+			mystack.pop(); // 出栈
+
+			mytop = mymin + (mystack.top() < 0 ? 0 : mystack.top());  // 更新top值，如果此时top值小于0，表示top值是min值，否则加差值
+
+		}
+		
+	}
+	int top() {
+		return mytop;
+
+	}
+	int min() {
+		return mymin;
+
+	}
+};
 // 函数声明
 bool Find(int target, vector<vector<int>> array);
 void replaceSpace(char *str, int length);

@@ -519,9 +519,17 @@ void Mirror(TreeNode *pRoot)
 			则依次打印出数字
 			1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10.
 * 函数名： vector<int> printMatrix(vector<vector<int> > matrix)
-* 函数参数：
-* 函数返回值：
+* 函数参数：一个二维矩阵
+* 函数返回值：从外向里顺时针依次打印
 * 实现方法：
+	链接：https://www.nowcoder.com/questionTerminal/9b4c81a02cd34f76be2659fa0d54342a?answerType=1&f=discussion
+	来源：牛客网
+
+	定义四个变量代表范围，up、down、left、right  
+	向右走存入整行的值，当存入后，该行再也不会被遍历，代表上边界的 up 加一，同时判断是否和代表下边界的 down 交错 
+	向下走存入整列的值，当存入后，该列再也不会被遍历，代表右边界的 right 减一，同时判断是否和代表左边界的 left 交错 
+	向左走存入整行的值，当存入后，该行再也不会被遍历，代表下边界的 down 减一，同时判断是否和代表上边界的 up 交错 
+	向上走存入整列的值，当存入后，该列再也不会被遍历，代表左边界的 left 加一，同时判断是否和代表右边界的 right 交错 
 
 */
 vector<int> printMatrix(vector<vector<int> > matrix)
@@ -534,38 +542,57 @@ vector<int> printMatrix(vector<vector<int> > matrix)
 	int column = matrix[0].size();
 	if (column == 0)
 		return ans;
-	int count = 0;
-	while (row > 0 || column > 0)
+	int up = 0, down = row - 1, right = column - 1, left = 0;
+	while (true)
 	{
 		int i = 0, j = 0;
 		int temp;
 		
-		for (i = count, j = count; j < column; ++j)  // 上
+		
+		for (i = up, j = left; j <= right ; ++j)  //  && up < down 上 （up, left）起点，(up,right)终点
 		{
 			temp = matrix[i][j];
 			ans.push_back(temp);
 		}
-		for (j = column - 1, i = count + 1; i < row; ++i)  // 右
+		up += 1;
+		if (up > down)
+			break;
+		for (j = right, i = up; i <= down ; ++i)  //&& right > left 右 (new up, right)起点， (down, right)终点
 		{
 			temp = matrix[i][j];
 			ans.push_back(temp);
 		}
-
-		for (j = column - 2, i = row - 1; j >= count; --j)  // 下
+		right -= 1;
+		if (right < left)
+			break;
+		for (j = right, i = down; j >= left ; --j)  //&& down > up 下 (down, new right)起点， (down, left)终点
 		{
 			temp = matrix[i][j];
 			ans.push_back(temp);
 		}
-
-		for (i = row - 2, j = count; i > count; --i)  // 左
+		down -= 1;
+		if (down < up)
+			break;
+		for (i = down, j = left; i >= up; --i)  // && left < right 左 (new down, left)起点， (new up, left)终点
 		{
 			temp = matrix[i][j];
 			ans.push_back(temp);
 		}
-		count += 1;
-		row -= 1; 
-		column -= 1;
+		left += 1;
+		if (left > right)
+			break;
+		
+		
 	}
 	return ans;
 
 }
+
+/*************函数说明***************
+* 问题描述：定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。
+* 函数名：
+* 函数参数：
+* 函数返回值：
+* 实现方法：
+
+*/
