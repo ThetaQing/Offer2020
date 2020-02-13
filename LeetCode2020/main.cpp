@@ -33,7 +33,8 @@ int main(int argc, char** argv)
 	Node2.next = &Node3;
 	// Node3.next = &Node4; 
 	Node4.next = &Node5;
-	Merge(&Node0, &Node4);*/
+	Merge(&Node0, &Node4);
+	// 从外向里顺时针打印数组测试
 	vector<int> row1 = { 1,2,3,4 };
 	vector<int> row2 = { 5,6,7,8 };
 	vector<int> row3 = { 9,10,11,12 };
@@ -41,6 +42,23 @@ int main(int argc, char** argv)
 	vector<int> row5 = { 17,18,19,20 };
 	vector<vector<int>> matrix = { row1, row2 , row3 , row4, row5};
 	printMatrix(matrix);
+	// 测试入栈出栈序列
+	vector<int> row1 = { 1,2,3,4,5};
+	vector<int> row2 = { 3,2,1,5,4};
+	cout << IsPopOrder(row1,row2);*/
+	levelTree c;
+	TreeNode root(1), left1(2), right1(3), left2(4), right2(5), left3(6), right3(7), left4(8);
+	root.left = &left1;
+	root.right = &right1;
+	left1.left = &left2;
+	left1.right = &right2;
+	right1.left = &left3;
+	right1.right = &right3;
+	right2.left = &left4;
+	c.PrintFromTopToBottom(&root);
+
+	cout << "OK";
+	
 	cin.get();
 	
 	return 0;

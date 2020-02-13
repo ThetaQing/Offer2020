@@ -589,10 +589,84 @@ vector<int> printMatrix(vector<vector<int> > matrix)
 }
 
 /*************函数说明***************
-* 问题描述：定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。
-* 函数名：
-* 函数参数：
-* 函数返回值：
-* 实现方法：
+* 问题描述：输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。
+			假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，
+			但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）
+* 函数名：bool IsPopOrder(vector<int> pushV,vector<int> popV)
+* 函数参数：入栈序列和出栈序列
+* 函数返回值：出栈序列是否可能是该栈的弹出序列
+* 实现方法：模拟栈
+		1、根据入栈序列入栈；
+		2、比较栈顶元素是否是出栈节点，若是，出栈，直到不能继续出栈为止；
+		3、继续入栈直到遍历完入栈序列；
+		4、比较栈顶元素是否是出栈节点，若是，出栈，直到不能继续出栈为止；
+		5、直接返回栈是否为空，若为空，模拟成功，该序列是一种弹出序列。
 
 */
+bool IsPopOrder(vector<int> pushV, vector<int> popV)
+{
+	int pushOrd = 0, popOrd = 0;  // 遍历记录
+	stack<int> V;
+	for (pushOrd = 0, popOrd = 0; pushOrd < pushV.size(); ++pushOrd)  // 按顺序遍历
+	{
+		V.push(pushV[pushOrd]);  // 入栈
+		while (!V.empty() && popV[popOrd] == V.top())  // 如果栈顶元素等于出栈元素
+		{
+			V.pop();   // 出栈
+			popOrd += 1;
+		}
+	}
+	// 全部入栈完毕，如果栈为空，直接返回
+	
+	while (!V.empty() && V.top() == popV[popOrd])
+	{
+		V.pop(); 
+		popOrd += 1;
+	}
+
+	return V.empty();
+}
+
+/***************函数说明***************
+* 问题描述：从上往下打印出二叉树的每个节点，同层节点从左至右打印。
+* 函数名：vector<int> PrintFromTopToBottom(TreeNode* root)
+* 函数参数：树的根节点
+* 函数返回值：从上到下打印二叉树的每个节点，同层节点从左到右打印
+* 实现方法：利用队列
+		1、从根节点开始入队；
+		2、加入根节点值，并将根节点的非空左右节点入队；
+		3、弹出这个根节点，并将根节点更新为队列的头节点；
+		4、重复上述三步，直到队空。
+
+*/
+vector<int> levelTree::PrintFromTopToBottom(TreeNode* root)
+{	
+	vector<int> topToBottom;
+	if (root == NULL)
+		return topToBottom;
+	queue<TreeNode*> nodeQueue;
+	TreeNode* temp = root;
+	nodeQueue.push(temp);
+	while (!nodeQueue.empty())  // 直到队列为空
+	{
+		
+		topToBottom.push_back(temp->val);  // 加入根节点值
+		// 对非空子节点从左到右依次入队
+		if(temp->left)
+			nodeQueue.push(temp->left);
+		if (temp->right)
+		{
+			nodeQueue.push(temp->right);
+		}
+		nodeQueue.pop();  // 先出队
+		if(!nodeQueue.empty())
+			temp = nodeQueue.front();
+		
+		
+		
+	}
+	return topToBottom;
+
+}
+
+

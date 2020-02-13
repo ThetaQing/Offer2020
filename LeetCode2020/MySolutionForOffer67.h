@@ -39,6 +39,14 @@ private:
 
 };
 
+class levelTree
+{
+
+public:
+	vector<int> PrintFromTopToBottom(TreeNode* root);
+
+};
+
 // 定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。
 class minStack {
 	stack<int> mystack;
@@ -84,16 +92,17 @@ vector<int> printListFromTailToHead(ListNode* head);
 TreeNode* reConstructBinaryTree(vector<int> pre, vector<int> vin);  // 前序遍历和中序遍历重建二叉树
 int rectCover(int number);  // 矩形覆盖
 int jumpFloorII(int number);  // 疯狂跳台阶，一次可最多跳number下
-int  NumberOf1(int n);
-double Power(double base, int exponent);
-void reOrderArray(vector<int> &array);
-ListNode* FindKthToTail(ListNode* pListHead, unsigned int k);
-ListNode* ReverseList(ListNode* pHead);
-ListNode* Merge(ListNode* pHead1, ListNode* pHead2);
-bool HasSubtree(TreeNode* pRoot1, TreeNode* pRoot2);
-bool isEquals(TreeNode* pRoot1, TreeNode* pRoot2);
-void Mirror(TreeNode *pRoot);
-vector<int> printMatrix(vector<vector<int> > matrix);
+int  NumberOf1(int n);  // 整数转二进制数后1的个数
+double Power(double base, int exponent);  // 浮点数的幂乘
+void reOrderArray(vector<int> &array);  // 所有奇数之前且保持相对位置不变
+ListNode* FindKthToTail(ListNode* pListHead, unsigned int k);  // 找到链表的倒数第k个节点
+ListNode* ReverseList(ListNode* pHead);  // 反转链表
+ListNode* Merge(ListNode* pHead1, ListNode* pHead2);  // 合并两个递增链表
+bool HasSubtree(TreeNode* pRoot1, TreeNode* pRoot2);  // pRoot2是否是pRoot1的子树
+bool isEquals(TreeNode* pRoot1, TreeNode* pRoot2);  // 两棵树是否相等
+void Mirror(TreeNode *pRoot);  // 二叉树的镜像
+vector<int> printMatrix(vector<vector<int> > matrix);  // 从外向里顺时针打印数组
+bool IsPopOrder(vector<int> pushV, vector<int> popV);  // 入栈顺序与出栈顺序
 #endif
 
 
