@@ -45,7 +45,7 @@ int main(int argc, char** argv)
 	// ≤‚ ‘»Î’ª≥ˆ’ª–Ú¡–
 	vector<int> row1 = { 1,2,3,4,5};
 	vector<int> row2 = { 3,2,1,5,4};
-	cout << IsPopOrder(row1,row2);*/
+	cout << IsPopOrder(row1,row2);
 	levelTree c;
 	TreeNode root(1), left1(2), right1(3), left2(4), right2(5), left3(6), right3(7), left4(8);
 	root.left = &left1;
@@ -55,7 +55,9 @@ int main(int argc, char** argv)
 	right1.left = &left3;
 	right1.right = &right3;
 	right2.left = &left4;
-	c.PrintFromTopToBottom(&root);
+	c.PrintFromTopToBottom(&root);*/
+	vector<int> seq = { 4, 8, 6, 12, 16, 14, 10};
+	VerifySquenceOfBST(seq);
 
 	cout << "OK";
 	

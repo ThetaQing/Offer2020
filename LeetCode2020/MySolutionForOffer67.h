@@ -103,6 +103,7 @@ bool isEquals(TreeNode* pRoot1, TreeNode* pRoot2);  // 两棵树是否相等
 void Mirror(TreeNode *pRoot);  // 二叉树的镜像
 vector<int> printMatrix(vector<vector<int> > matrix);  // 从外向里顺时针打印数组
 bool IsPopOrder(vector<int> pushV, vector<int> popV);  // 入栈顺序与出栈顺序
+bool VerifySquenceOfBST(vector<int> sequence);
 #endif
 
 

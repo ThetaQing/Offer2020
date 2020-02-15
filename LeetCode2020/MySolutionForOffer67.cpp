@@ -661,12 +661,48 @@ vector<int> levelTree::PrintFromTopToBottom(TreeNode* root)
 		nodeQueue.pop();  // 先出队
 		if(!nodeQueue.empty())
 			temp = nodeQueue.front();
-		
-		
-		
+				
 	}
 	return topToBottom;
 
 }
 
+/****************函数说明*********
+* 问题描述：输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。
+			如果是则输出Yes,否则输出No。假设输入的数组的任意两个数字都互不相同。
+* 函数名：bool VerifySquenceOfBST(vector<int> sequence)
+* 函数参数：
+* 函数返回值：
+* 实现方法：
 
+**/
+
+bool VerifySquenceOfBST(vector<int> sequence)
+{
+	if (sequence.empty() || sequence.size() == 1)  // 只有一个元素或者没有元素
+		return 1;
+	
+	int size = sequence.size();
+	if (size < 3)  // 即两个元素
+	{
+		return sequence[0] < sequence[1];  // 如果第一个元素小于第二个元素，返回1
+	}
+	else  // 至少有三个元素
+	{
+		for (int i = 1, j = 2; (j < size || i < size); i += 2, j += 2)
+		{
+			if (i < size)
+			{
+				if (sequence[i] < sequence[i - 1])
+					return 0;
+			}
+			if (j < size)
+			{
+				if (sequence[j] > sequence[j - 1])
+					return 0;
+			}
+			
+		}
+	}
+	return 1;
+}
