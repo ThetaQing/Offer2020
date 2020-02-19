@@ -677,32 +677,23 @@ vector<int> levelTree::PrintFromTopToBottom(TreeNode* root)
 
 **/
 
-bool VerifySquenceOfBST(vector<int> sequence)
-{
-	if (sequence.empty() || sequence.size() == 1)  // 只有一个元素或者没有元素
-		return 1;
-	
-	int size = sequence.size();
-	if (size < 3)  // 即两个元素
-	{
-		return sequence[0] < sequence[1];  // 如果第一个元素小于第二个元素，返回1
-	}
-	else  // 至少有三个元素
-	{
-		for (int i = 1, j = 2; (j < size || i < size); i += 2, j += 2)
-		{
-			if (i < size)
-			{
-				if (sequence[i] < sequence[i - 1])
-					return 0;
-			}
-			if (j < size)
-			{
-				if (sequence[j] > sequence[j - 1])
-					return 0;
-			}
-			
-		}
-	}
-	return 1;
+bool helperVerifyPostorder(vector<int>& post, int lo, int hi) {
+	if (lo >= hi) return true; //单节点或空节点返回true
+	int root = post[hi]; //后序遍历序列最后的值为根节点的值
+	int l = lo;
+	while (l < hi && post[l] < root)
+		l++; //遍历左子树(值小于根)，左子树序列post[lo, l);
+	int r = l;
+	while (r<hi && post[r]>root)
+		r++; //遍历右子树(值大于根)，右子树序列post[l, r);
+	if (r != hi) return false;//若未将post[l, hi)遍历完，则非后序遍历序列 返回false
+	return helperVerifyPostorder(post, lo, l - 1) && helperVerifyPostorder(post, l, hi - 1); //递归检查左右子树
 }
+
+bool verifyPostorder(vector<int>& postorder) {
+		return helperVerifyPostorder(postorder, 0, postorder.size() - 1);
+	}
+
+	
+
+
