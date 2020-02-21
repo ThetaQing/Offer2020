@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "MySolutionForOffer67.h"
+#include "leetcode.h"
 using namespace std;
 
 int main(int argc, char** argv)
@@ -56,8 +57,8 @@ int main(int argc, char** argv)
 	right1.right = &right3;
 	right2.left = &left4;
 	c.PrintFromTopToBottom(&root);*/
-	vector<int> seq = { 4, 8, 6, 12, 16, 14, 10};
-	VerifySquenceOfBST(seq);
+	vector<int> seq = { 1,7,3,-1,0,0,-1,5,6 };
+	pivotIndex(seq);
 
 	cout << "OK";
 	
