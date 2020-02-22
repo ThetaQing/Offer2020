@@ -57,8 +57,8 @@ int main(int argc, char** argv)
 	right1.right = &right3;
 	right2.left = &left4;
 	c.PrintFromTopToBottom(&root);*/
-	vector<int> seq = { 1,7,3,-1,0,0,-1,5,6 };
-	pivotIndex(seq);
+	vector<int> seq = { 3,0,0,2 };
+	dominantIndex(seq);
 
 	cout << "OK";
 	

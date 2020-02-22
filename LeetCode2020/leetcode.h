@@ -5,7 +5,7 @@
 using namespace std;
 
 int pivotIndex(vector<int>& nums);
-
+int dominantIndex(vector<int>& nums);
 
 #endif // !leetcode_h
 
