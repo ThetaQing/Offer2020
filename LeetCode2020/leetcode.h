@@ -6,6 +6,7 @@ using namespace std;
 
 int pivotIndex(vector<int>& nums);
 int dominantIndex(vector<int>& nums);
+vector<int> findDiagonalOrder(vector<vector<int>>& matrix);
 
 #endif // !leetcode_h
 
