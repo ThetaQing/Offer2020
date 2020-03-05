@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <map>
 #include <set>
+#include <unordered_set>
 using namespace std;
 
 /**************函数说明******************
@@ -121,6 +122,40 @@ int majorityElement(vector<int>& nums)
 
 }
 
+
+/***************函数说明***********************
+* 问题描述：求两个数组的交集
+* 函数名：vector<int> intersection(vector<int>& nums1, vector<int>& nums2)
+* 解决方案：1、一个数组填入表中；
+			2、查找交集元素
+			3、去重
+
+*/
+vector<int> intersection(vector<int>& nums1, vector<int>& nums2)
+{
+	vector<int> ans;
+	unordered_set<int> myset;
+	set<int> ansset;
+	// 其中一个数组填入表中
+	for (auto i : nums1)
+	{		
+		myset.insert(i);
+	}
+	// 查找交集元素
+	for (auto i : nums2)
+	{
+		if (myset.count(i) > 0)
+		{
+			ansset.insert(i);
+		}
+	}
+	// 去重
+	for (auto i : ansset)
+	{
+		ans.push_back(i);
+	}
+	return ans;
+}
 
 
 
