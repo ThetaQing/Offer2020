@@ -157,5 +157,35 @@ vector<int> intersection(vector<int>& nums1, vector<int>& nums2)
 	return ans;
 }
 
+/************函数说明***********
+* 问题描述：编写一个算法来判断一个数是不是“快乐数”。
+一个“快乐数”定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，
+然后重复这个过程直到这个数变为 1，也可能是无限循环但始终变不到 1。如果可以变为 1，那么这个数就是快乐数。
+* 函数名：bool isHappy(int n)
+* 解决方案：快慢指针
+1、慢指针一次走一步，快指针一次走两步；
+2、如果快指针等于慢指针，则判断是否是由1引起的循环。
+*/
+bool isHappy(int n)
+{
+	int fast = n, slow = n;  // 定义快慢指针
+	do
+	{
+		slow = sumDec(slow);  // 慢指针走一步
+		fast = sumDec(fast);  // 快指针走两步
+		fast = sumDec(fast);
 
-
+	} while (fast != slow);  // 可能是由于1引起的循环，也有可能不是
+	return fast == 1;  // 如果是1引起的循环，则fast为1
+}
+int sumDec(int n)  // 求这个数的各个位数的平方
+{
+	int sum = 0;	
+	int temp = n;
+	while (temp)
+	{
+		sum += (temp % 10) * (temp % 10);  // 取余数		
+		temp = temp / 10;  // 更新值
+	}	
+	return sum;
+}

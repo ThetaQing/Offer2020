@@ -8,7 +8,8 @@ int pivotIndex(vector<int>& nums);
 int dominantIndex(vector<int>& nums);
 vector<int> findDiagonalOrder(vector<vector<int>>& matrix);
 int majorityElement(vector<int>& nums);
-int superEggDrop(int K, int N);
+int sumDec(int n);
+bool isHappy(int n);
 
 #endif // !leetcode_h
 
