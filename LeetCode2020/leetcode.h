@@ -10,6 +10,7 @@ vector<int> findDiagonalOrder(vector<vector<int>>& matrix);
 int majorityElement(vector<int>& nums);
 int sumDec(int n);
 bool isHappy(int n);
+bool isIsomorphic(string s, string t);
 
 #endif // !leetcode_h
 

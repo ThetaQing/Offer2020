@@ -189,3 +189,47 @@ int sumDec(int n)  // 求这个数的各个位数的平方
 	}	
 	return sum;
 }
+
+/**************函数说明***************
+* 问题说明：同构字符串
+给定两个字符串 s 和 t，判断它们是否是同构的。
+如果 s 中的字符可以被替换得到 t ，那么这两个字符串是同构的。
+所有出现的字符都必须用另一个字符替换，同时保留字符的顺序。两个字符不能映射到同一个字符上，但字符可以映射自己本身。
+* 函数名：bool isIsomorphic(string s, string t)
+* 解决方案：
+两次映射，从s映射到t和从t映射到s；（一次映射不行，多个字符可映射到一个字符）
+
+*/
+bool isIsomorphic(string s, string t)
+{
+	map<char, char> s2t, t2s;  // 分别表示从s映射到t，从t映射到s
+	for (int i = 0; i < s.size(); ++i)
+	{
+		char cs = s[i];
+		char ct = t[i];
+		// s字符串映射到t中
+		if (s2t.count(cs) == 0)  // 如果没有这个关键字
+		{
+			s2t.insert(make_pair(cs, ct));  // 插入这个关键字和它的映射
+		}
+		else if (s2t[cs] != ct)  // 如果这个关键字映射的字符不是ct，说明存在两种映射
+			return 0; // 如果找到了这个关键字
+		
+		// t字符串映射到s中
+		if (t2s.count(ct) == 0)
+		{
+			t2s.insert(make_pair(ct, cs));
+		}
+		else if (t2s[ct] != cs)
+			return 0;
+
+	}
+	return 1;
+	
+}
+
+
+
+
+
+
