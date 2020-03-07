@@ -11,6 +11,7 @@ int majorityElement(vector<int>& nums);
 int sumDec(int n);
 bool isHappy(int n);
 bool isIsomorphic(string s, string t);
+vector<string> findRestaurant(vector<string>& list1, vector<string>& list2);
 
 #endif // !leetcode_h
 

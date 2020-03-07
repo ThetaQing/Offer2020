@@ -228,6 +228,50 @@ bool isIsomorphic(string s, string t)
 	
 }
 
+/***************函数说明************
+* 问题描述：两个列表的最小索引总和
+假设Andy和Doris想在晚餐时选择一家餐厅，并且他们都有一个表示最喜爱餐厅的列表，每个餐厅的名字用字符串表示。
+你需要帮助他们用最少的索引和找出他们共同喜爱的餐厅。 如果答案不止一个，则输出所有答案并且不考虑顺序。 你可以假设总是存在一个答案。
+* 函数名：vector<string> findRestaurant(vector<string>& list1, vector<string>& list2)
+* 解决方案：
+1、将其中一个链表和索引用字典存储；
+2、遍历另一个链表，并查找相交的字符串，比较索引和；
+3、如果出现更小的索引和，将原链表清零，并添加此时的字符串，如果索引和相等，继续添加。
+
+
+*/
+vector<string> findRestaurant(vector<string>& list1, vector<string>& list2)
+{
+	
+	map<string, int> strList1;  // 链表1的映射
+	vector<string> ans;
+	if (list1.empty() || list2.empty())
+		return ans;
+	for (int i = 0; i < list1.size(); ++i)	
+		strList1.insert(make_pair(list1[i], i));  // 字符串与索引形成数对
+	
+	int min = INT_MAX, index1 = 0;
+	for (int i = 0; i < list2.size(); ++i)
+	{
+		if (strList1.count(list2[i]))  // 如果能够在字典中找到这个字符串，记录最小值
+		{
+			 // 该字符串在链表1中的索引
+			if (min > strList1[list2[i]] + i)  // 更新
+			{
+				index1 = strList1[list2[i]];
+				min = index1 + i;
+				ans.clear();
+				ans.push_back(list2[i]);  // 加入此时的字符串
+			}
+			else if (min == strList1[list2[i]] + i)
+				ans.push_back(list2[i]);
+				
+		}
+	}
+	
+	return ans;
+	
+}
 
 
 
