@@ -12,6 +12,7 @@ int sumDec(int n);
 bool isHappy(int n);
 bool isIsomorphic(string s, string t);
 vector<string> findRestaurant(vector<string>& list1, vector<string>& list2);
+bool containsNearbyDuplicate(vector<int>& nums, int k);
 
 #endif // !leetcode_h
 

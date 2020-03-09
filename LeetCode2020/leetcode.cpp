@@ -273,6 +273,39 @@ vector<string> findRestaurant(vector<string>& list1, vector<string>& list2)
 	
 }
 
+/***************函数说明***************
+* 问题描述：存在重复元素 II
+给定一个整数数组和一个整数 k，
+判断数组中是否存在两个不同的索引 i 和 j，
+使得 nums [i] = nums [j]，并且 i 和 j 的差的绝对值最大为 k。
+* 函数名：bool containsNearbyDuplicate(vector<int>& nums, int k)
+* 解决方案：
+
+
+*/
+bool containsNearbyDuplicate(vector<int>& nums, int k)
+{
+	// 差的绝对值最大值为k
+	multiset<int> numsSet;
+
+	for (int i = 0, j = 0; i < nums.size(); ++i)
+	{
+		// 字典中只含k个元素
+		if (numsSet.size() > k)
+		{
+			numsSet.erase(nums[j]);
+			j += 1;
+		}// 删除首部元素
+		if (numsSet.count(nums[i]) > 0)
+			return 1;  // 如果在k个元素中找到了这个元素，返回1
+		numsSet.insert(nums[i]);
+
+	}
+	return 0;
+
+
+}
+
 
 
 
