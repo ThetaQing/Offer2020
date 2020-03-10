@@ -306,6 +306,33 @@ bool containsNearbyDuplicate(vector<int>& nums, int k)
 
 }
 
+/**************函数说明*******************
+* 问题描述：字母异位词分组
+给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。
+* 函数名：vector<vector<string>> groupAnagrams(vector<string>& strs)
+* 解决方案：
+
+
+
+*/
+vector<vector<string>> groupAnagrams(vector<string>& strs) {
+	vector<vector<string>> ans;
+	map<map<char, int>, vector<string> > hash;
+	for (int i = 0; i < strs.size(); i++) 
+	{
+		//字符串hash
+		map<char, int> tmp;
+		for (int j = 0; j < strs[i].length(); j++) {
+			tmp[strs[i][j]]++;
+		}//记录字符串中每个字符出现的个数
+		hash[tmp].push_back(strs[i]);//hash值相同的属于同一类
+	}
+	for (map<map<char, int>, vector<string> >::iterator it = hash.begin(); it != hash.end(); it++) 
+		ans.push_back(it->second);
+	//按照已经分好的类从map<map<char,int>,vector<string> > hash中提取出答案
+	return ans;
+}
+
 
 
 

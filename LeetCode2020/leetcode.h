@@ -13,6 +13,7 @@ bool isHappy(int n);
 bool isIsomorphic(string s, string t);
 vector<string> findRestaurant(vector<string>& list1, vector<string>& list2);
 bool containsNearbyDuplicate(vector<int>& nums, int k);
+vector<vector<string>> groupAnagrams(vector<string>& strs);
 
 #endif // !leetcode_h
 
