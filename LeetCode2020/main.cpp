@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "MySolutionForOffer67.h"
+
 #include "leetcode.h"
 using namespace std;
 
@@ -56,10 +56,15 @@ int main(int argc, char** argv)
 	right1.left = &left3;
 	right1.right = &right3;
 	right2.left = &left4;
-	c.PrintFromTopToBottom(&root);*/
+	c.PrintFromTopToBottom(&root);
 	vector<int> seq = { 3,0,0,2 };
 	dominantIndex(seq);
-
+	isHappy(19);
+	vector<int> seq = { 4, 1, 2, 3, 1, 5 };
+	containsNearbyDuplicate(seq, 3);
+*/
+	string s = "abcabcdfbb";
+	lengthOfLongestSubstring(s);
 	cout << "OK";
 	
 	cin.get();

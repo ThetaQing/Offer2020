@@ -333,6 +333,105 @@ vector<vector<string>> groupAnagrams(vector<string>& strs) {
 	return ans;
 }
 
+/********函数说明*********
+* 问题描述：寻找重复的子树
+给定一棵二叉树，返回所有重复的子树。对于同一类的重复子树，你只需要返回其中任意一棵的根结点即可。
+两棵树重复是指它们具有相同的结构以及相同的结点值。
+* 函数名：vector<TreeNode*> findDuplicateSubtrees(TreeNode* root)
+* 解决方案：
+
+
+*/
+vector<TreeNode*> Solution::findDuplicateSubtrees(TreeNode* root)
+{
+	TreeNode* tempNode = root;
+	map<TreeNode*, vector<int>> childNodeMap;  // 每个结点的子树序列
+	vector<TreeNode*> childVec;
+	while (tempNode != NULL)
+	{
+		// 使用先序遍历
+	}
+	return childVec;
+}
+//先序遍历
+vector<int> Solution::findDuplicateSubtreesHelper(TreeNode* root)
+{
+	childNodeVec.push_back(root->val);
+	findDuplicateSubtreesHelper(root->left);
+	findDuplicateSubtreesHelper(root->right);
+	return childNodeVec;
+}
+
+/*********函数说明*******
+* 问题描述：宝石与石头
+给定字符串J 代表石头中宝石的类型，和字符串 S代表你拥有的石头。 S 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。
+
+J 中的字母不重复，J 和 S中的所有字符都是字母。字母区分大小写，因此"a"和"A"是不同类型的石头。
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/jewels-and-stones
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+* 函数名：int numJewelsInStones(string J, string S)
+* 解决方案：
+1、遍历石头序列，并放在multiset里面；
+2、遍历宝石序列，找到石头序列中宝石的数目。
+
+
+*/
+int numJewelsInStones(string J, string S)
+{
+	multiset<char> stone;
+	int sum = 0;
+	// 把石头放在一个集合中
+	for (auto i : S)
+	{
+		stone.insert(i);
+	}
+	for (auto i : J)
+	{
+		sum += stone.count(i);
+	}
+	return sum;
+
+}
+
+/************函数说明************
+* 问题描述：无重复字符的最长字串
+给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+* 函数名：int lengthOfLongestSubstring(string s)
+* 解决方案：
+set，记录最长长度，如果新字符有重复的，删除重复元素直到这个新元素；
+然后添加这个新元素并更新max
+
+*/
+
+int lengthOfLongestSubstring(string s)
+{
+	set<char> strSet;
+	int max = 0;
+	// i遍历字符串，j表示字符串在集合中加入最早的字符的索引
+	for (int i = 0, j = 0; i < s.size(); ++i)
+	{		
+		if (strSet.count(s[i]) > 0)
+		{
+			while (s[j] != s[i])
+			{
+				strSet.erase(s[j]);
+				j += 1;
+			}
+			strSet.erase(s[j]);  // 删除和新元素重复的元素
+			j += 1;  // 更新j		
+			
+		}		
+		strSet.insert(s[i]);  // 添加这个新元素
+		// 此时无重复元素的长度
+		int len = strSet.size();
+		// 有必要则更新max值
+		if (max < len)
+			max = len;
+	}
+	return max;
+}
 
 
 
