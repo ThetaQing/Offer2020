@@ -433,6 +433,16 @@ int lengthOfLongestSubstring(string s)
 	return max;
 }
 
+/*************函数说明***********
+* 问题描述：替换空格
+请实现一个函数，把字符串 s 中的每个空格替换成"%20"。
+* 函数名：string replaceSpace(string s)
+* 解决方案：
 
+*/
+string replaceSpace(string s)
+{
+
+}
 
 

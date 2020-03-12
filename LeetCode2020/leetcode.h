@@ -32,6 +32,7 @@ bool containsNearbyDuplicate(vector<int>& nums, int k);
 vector<vector<string>> groupAnagrams(vector<string>& strs);
 int numJewelsInStones(string J, string S);
 int lengthOfLongestSubstring(string s);
+string replaceSpace(string s);
 #endif // !leetcode_h
 
 
