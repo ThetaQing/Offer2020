@@ -33,6 +33,8 @@ vector<vector<string>> groupAnagrams(vector<string>& strs);
 int numJewelsInStones(string J, string S);
 int lengthOfLongestSubstring(string s);
 string replaceSpace(string s);
+int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D);
+int fourSumCount2(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D);
 #endif // !leetcode_h
 
 

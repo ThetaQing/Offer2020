@@ -62,9 +62,11 @@ int main(int argc, char** argv)
 	isHappy(19);
 	vector<int> seq = { 4, 1, 2, 3, 1, 5 };
 	containsNearbyDuplicate(seq, 3);
-*/
+
 	string s = "abcabcdfbb";
-	lengthOfLongestSubstring(s);
+	lengthOfLongestSubstring(s);*/
+	vector<int> A = { 1, 2 }, B = { -2, -1 }, C = { -1, 2 }, D = { 0, 2 };
+	fourSumCount2(A, B, C, D);
 	cout << "OK";
 	
 	cin.get();
