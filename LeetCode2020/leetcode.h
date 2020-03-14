@@ -2,6 +2,10 @@
 #define leetcode_h
 #include <iostream>
 #include <vector>
+#include <map>
+#include <set>
+#include <unordered_set>
+#include <unordered_map>
 using namespace std;
 // 结构体说明
 struct TreeNode {
@@ -13,10 +17,11 @@ struct TreeNode {
 };
 // 类说明
 class Solution {
-	vector<int> childNodeVec;
+	vector<TreeNode*> childVec;
+	unordered_map<vector<char>,TreeNode*> childNodeMap;  // 每个结点的子树序列
 public:
 	vector<TreeNode*> findDuplicateSubtrees(TreeNode* root);
-	vector<int> findDuplicateSubtreesHelper(TreeNode* root);
+	int findDuplicateSubtreesHelper(TreeNode* root);
 
 };
 

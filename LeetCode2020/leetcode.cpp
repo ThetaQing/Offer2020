@@ -334,34 +334,7 @@ vector<vector<string>> groupAnagrams(vector<string>& strs) {
 	return ans;
 }
 
-/********函数说明*********
-* 问题描述：寻找重复的子树
-给定一棵二叉树，返回所有重复的子树。对于同一类的重复子树，你只需要返回其中任意一棵的根结点即可。
-两棵树重复是指它们具有相同的结构以及相同的结点值。
-* 函数名：vector<TreeNode*> findDuplicateSubtrees(TreeNode* root)
-* 解决方案：
 
-
-*/
-vector<TreeNode*> Solution::findDuplicateSubtrees(TreeNode* root)
-{
-	TreeNode* tempNode = root;
-	map<TreeNode*, vector<int>> childNodeMap;  // 每个结点的子树序列
-	vector<TreeNode*> childVec;
-	while (tempNode != NULL)
-	{
-		// 使用先序遍历
-	}
-	return childVec;
-}
-//先序遍历
-vector<int> Solution::findDuplicateSubtreesHelper(TreeNode* root)
-{
-	childNodeVec.push_back(root->val);
-	findDuplicateSubtreesHelper(root->left);
-	findDuplicateSubtreesHelper(root->right);
-	return childNodeVec;
-}
 
 /*********函数说明*******
 * 问题描述：宝石与石头
@@ -490,5 +463,39 @@ int fourSumCount2(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D
 
 	
 }
+
+/********函数说明*********
+* 问题描述：寻找重复的子树
+给定一棵二叉树，返回所有重复的子树。对于同一类的重复子树，你只需要返回其中任意一棵的根结点即可。
+两棵树重复是指它们具有相同的结构以及相同的结点值。
+* 函数名：vector<TreeNode*> findDuplicateSubtrees(TreeNode* root)
+* 解决方案：
+
+
+*/
+vector<TreeNode*> Solution::findDuplicateSubtrees(TreeNode* root)
+{
+	findDuplicateSubtreesHelper(root);
+	return childVec;
+}
+//先序遍历
+int Solution::findDuplicateSubtreesHelper(TreeNode* root)
+{
+	if (root == NULL)
+		return 0;
+	vector<char> v;
+	if (root != NULL)
+	{
+		v.push_back(root->val);
+		v.push_back(findDuplicateSubtreesHelper(root->left));
+		v.push_back(findDuplicateSubtreesHelper(root->right));
+		childNodeMap.insert(make_pair(v, root));
+		if (childNodeMap.count(v) > 1)
+			childVec.push_back(root);
+	}
+	return root->val;
+
+}
+
 
 
