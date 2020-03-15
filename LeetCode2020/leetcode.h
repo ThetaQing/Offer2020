@@ -40,6 +40,8 @@ int lengthOfLongestSubstring(string s);
 string replaceSpace(string s);
 int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D);
 int fourSumCount2(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D);
+
+vector<vector<int>> generate(int numRows);
 #endif // !leetcode_h
 
 

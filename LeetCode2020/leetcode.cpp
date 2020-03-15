@@ -472,7 +472,7 @@ int fourSumCount2(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D
 * 解决方案：
 
 
-*/
+
 vector<TreeNode*> Solution::findDuplicateSubtrees(TreeNode* root)
 {
 	findDuplicateSubtreesHelper(root);
@@ -495,7 +495,36 @@ int Solution::findDuplicateSubtreesHelper(TreeNode* root)
 	}
 	return root->val;
 
+}*/
+/*************函数说明**************
+* 问题描述：杨辉三角
+
+给定一个非负整数 numRows，生成杨辉三角的前 numRows 行。
+
+* 函数名：vector<vector<int>> generate(int numRows)
+* 解决方案：
+1、按照规律就行：ans[i][j] = ans[i - 1][j - 1] + ans[i - 1][j]
+2、特殊情况特殊考虑
+注意：不能直接用下标索引，因为在vector<vector<int>> ans在没有push任何向量时，ans是空的，不存在任何元素
+**/
+
+vector<vector<int>> generate(int numRows)
+{	
+	vector<vector<int>> ans;
+	int numRows = 5;
+	for (int i = 0, level = 0; level < numRows && i < numRows; ++i)
+	{
+		vector<int> vec;
+		for (int j = 0; j < level + 1; ++j)
+		{
+			if (j == 0 || j == level)
+				vec.push_back(1);
+			else
+				vec.push_back(ans[i - 1][j - 1] + ans[i - 1][j]);
+		}
+		ans.push_back(vec);
+		level += 1;
+	}
+	return ans;
 }
-
-
 
