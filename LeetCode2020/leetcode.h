@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <set>
+#include <stack>
 #include <unordered_set>
 #include <unordered_map>
 using namespace std;
@@ -42,6 +43,8 @@ int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D)
 int fourSumCount2(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D);
 
 vector<vector<int>> generate(int numRows);
+string addBinary(string a, string b);
+
 #endif // !leetcode_h
 
 

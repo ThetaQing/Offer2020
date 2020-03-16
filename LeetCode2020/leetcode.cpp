@@ -6,6 +6,8 @@
 #include <set>
 #include <unordered_set>
 #include <unordered_map>
+#include <stack>
+#include <tuple>
 using namespace std;
 
 /**************函数说明******************
@@ -511,7 +513,7 @@ int Solution::findDuplicateSubtreesHelper(TreeNode* root)
 vector<vector<int>> generate(int numRows)
 {	
 	vector<vector<int>> ans;
-	int numRows = 5;
+
 	for (int i = 0, level = 0; level < numRows && i < numRows; ++i)
 	{
 		vector<int> vec;
@@ -526,5 +528,57 @@ vector<vector<int>> generate(int numRows)
 		level += 1;
 	}
 	return ans;
+}
+
+/**********函数说明**********
+* 问题描述：二进制求和
+
+给定两个二进制字符串，返回他们的和（用二进制表示）。
+输入为非空字符串且只包含数字 1 和 0。
+* 函数名：string addBinary(string a, string b)
+* 解决方案：
+1、逆序输出用栈，从末尾开始，用整数值计算；
+2、最后一位及特殊情况的讨论
+
+*/
+string addBinary(string a, string b)
+{
+	int asize = a.size(), bsize = b.size();	
+	if (!asize && !bsize)  // 特殊情况
+		return "0";
+	stack<char> ansStack;  // 逆序输出用栈
+	int flag = 0;
+	int re = 0;
+	string sAns;
+	while (asize || bsize)  // 索引有效
+	{
+		if (asize && bsize)  // 双方都有效
+		{
+			re = a[asize - 1] - '0' + b[bsize - 1] - '0' + flag;
+			asize -= 1;
+			bsize -= 1;
+		}
+		else if (asize)
+		{
+			re = a[asize - 1] - '0' + flag;
+			asize -= 1;
+		}
+		else if (bsize)
+		{
+			re = b[bsize - 1] - '0' + flag;
+			bsize -= 1;
+		}
+		ansStack.push(re % 2 + '0');  // 压栈
+		flag = re / 2;
+	}
+	if (flag)  // 最后一位是否有进位
+		ansStack.push(flag);
+	while (!ansStack.empty())
+	{
+		sAns.push_back(ansStack.top());
+		ansStack.pop();
+	}
+	return sAns;
+
 }
 
