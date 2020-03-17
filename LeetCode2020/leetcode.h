@@ -44,7 +44,7 @@ int fourSumCount2(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D
 
 vector<vector<int>> generate(int numRows);
 string addBinary(string a, string b);
-
+int arrayPairSum(vector<int>& nums);
 #endif // !leetcode_h
 
 

@@ -582,3 +582,28 @@ string addBinary(string a, string b)
 
 }
 
+/*********函数说明********
+* 问题描述：数组拆分 I
+
+给定长度为 2n 的数组, 你的任务是将这些数分成 n 对, 
+例如 (a1, b1), (a2, b2), ..., (an, bn) ，使得从1 到 n 的 min(ai, bi) 总和最大。
+* 函数名：int arrayPairSum(vector<int>& nums)
+* 解决方案：
+1、排序
+2、从第0个到倒数第二个的总和
+
+*/
+int arrayPairSum(vector<int>& nums)
+{
+	sort(nums.begin(), nums.end());
+	int sum = 0;
+	int n = nums.size();
+	while (n >= 0)
+	{
+		sum += nums[--n];
+		n -= 1;
+	}
+	return sum;
+}
+
+
