@@ -641,3 +641,37 @@ vector<int> twoSum(vector<int>& numbers, int target)
 	return ans;
 }
 
+
+/**********函数说明*********
+* 问题描述：移除元素
+
+给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。
+不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。
+元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
+* 函数名：int removeElement(vector<int>& nums, int val)
+* 解决方案：双指针法
+1、从前往后遍历，前指针等于该值，判断后指针；
+2、后指针如果等于前指针，直接返回前指针（此时前后指针都表示该值，保留前指针的值即可）；
+3、若不等于前指针，且值为该值，继续向前移，直到找到一个不等于该值的数，交换前后指针的数值，继续遍历。
+
+
+*/
+int removeElement(vector<int>& nums, int val)
+{
+	int size = nums.size();
+	int front = 0;
+	for (int back = size - 1; front <= back; ++front)
+	{
+		if (nums[front] == val)
+		{
+			while (back >= front && nums[back] == val)
+				if (back == front)
+					return front;
+				else
+					--back;
+			swap(nums[front], nums[back]);
+		}
+	}
+	return front;
+}
+
