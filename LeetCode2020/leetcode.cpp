@@ -674,4 +674,31 @@ int removeElement(vector<int>& nums, int val)
 	}
 	return front;
 }
+/***********函数说明***********
+* 问题描述：最大连续1的个数
+给定一个二进制数组， 计算其中最大连续1的个数。
+* 函数名：int findMaxConsecutiveOnes(vector<int>& nums)
+* 解决方案：双指针
+1、前指针先探寻1的起始位置，探寻到了后把前指针赋值给后指针；
+2、后指针继续向后探寻，直到不为1为止；
+3、更新完max值之后，移动front指针至此时back指针的位置，循环。
 
+*/
+int findMaxConsecutiveOnes(vector<int>& nums)
+{
+	int front = 0, back = 0, max = 0, size = nums.size();
+	while (front < size)
+	{
+		if (nums[front] == 1)
+		{
+			back = front;
+			while (back < size && nums[back] == 1)
+				back += 1;  // 后指针持续到不为1			
+			if (back - front > max)  // 如果有更新的必要就更新
+				max = back - front;
+			front = back;  // 更新此时的前指针
+		}
+		else front += 1;
+	}
+	return max;
+}

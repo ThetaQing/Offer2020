@@ -47,6 +47,7 @@ string addBinary(string a, string b);
 int arrayPairSum(vector<int>& nums);
 vector<int> twoSum(vector<int>& numbers, int target);
 int removeElement(vector<int>& nums, int val);
+int findMaxConsecutiveOnes(vector<int>& nums);
 #endif // !leetcode_h
 
 
