@@ -702,3 +702,31 @@ int findMaxConsecutiveOnes(vector<int>& nums)
 	}
 	return max;
 }
+
+/**************函数说明*************
+* 问题描述：长度最小的子数组
+
+给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的连续子数组。如果不存在符合条件的连续子数组，返回 0。
+
+* 函数名：int minSubArrayLen(int s, vector<int>& nums)
+* 解决方案：
+*/
+int minSubArrayLen(int s, vector<int>& nums)
+{
+	int begin = 0, end = 0, size = nums.size(), min = size + 1, target = s;  // min的初始定义是一个不可能的大数
+	while (begin < size)
+	{
+		target = s;
+		while (end < size && target > 0)
+		{
+			target -= nums[end++];
+		}  // 找到所有数组中满足其和大于等于s的子数组
+		if (end - begin < min && target <= 0)
+			min = end - begin;
+		begin += 1;
+		end = begin;
+	}
+	return min > size ? 0 : min;
+}
+
+
