@@ -709,7 +709,11 @@ int findMaxConsecutiveOnes(vector<int>& nums)
 给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的连续子数组。如果不存在符合条件的连续子数组，返回 0。
 
 * 函数名：int minSubArrayLen(int s, vector<int>& nums)
-* 解决方案：
+* 解决方案：双指针O(n^2)
+1、前指针front从前往后遍历，target表示目标与front到end之间的数值和的差距，end指针不断向后移，直到target为负或0；
+2、若有必要更新窗口最小值；
+3、前指针front向后移，end与front指向同一位置，重复上两步。
+4、min初始化为大于size值的不可能的数，若最后min>size表示不存在这样的子串，返回0，否则返回size。
 */
 int minSubArrayLen(int s, vector<int>& nums)
 {
@@ -728,5 +732,66 @@ int minSubArrayLen(int s, vector<int>& nums)
 	}
 	return min > size ? 0 : min;
 }
+
+/*********函数说明************
+* 问题描述：翻转字符串里的单词
+给定一个字符串，逐个翻转字符串中的每个单词。
+说明：
+无空格字符构成一个单词。
+输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。
+如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。
+* 函数名：string reverseWords(string s)
+* 解决方案：// 尚未解决
+
+*/
+
+string reverseWords(string s) {
+	int left = 0, right = s.size() - 1;
+
+	// 找到第一个不是空格的位置
+	while (left <= right && isspace(s[left]))
+		++left;
+	// 找到最后一个不是空格的位置
+	while (right >= 0 && isspace(s[right]))
+		--right;
+
+	// s中只含空格
+	if (right < left)
+		return string("");
+
+	// 反向构造新的string  
+	string res(s.rbegin() + (s.size() - right - 1), s.rbegin() + (s.size() - left));
+
+	// 反转单词并删除多余空格
+	auto iter = res.begin(), pre = iter;
+	while (true) {
+		// pre记录单词的起始位置
+		if (iter != res.end() && *iter != ' ')
+			pre = iter;
+		// iter指向当前单词的下一个位置
+		while (iter != res.end() && *iter != ' ')
+			++iter;
+		// 反转
+		reverse(pre, iter);
+		// 最后一个单词完成反转后退出
+		if (iter == res.end())
+			break;
+
+		// 当前iter指向空格 
+		pre = ++iter;
+		// 若pre指向空格 说明含多余空格
+		if (*pre == ' ') {
+			// iter指向此后第一个不是空格的位置
+			while (iter != res.end() && *iter == ' ')
+				++iter;
+			// 删除多余空格 pre指向iter原来指向的字符(此时iter已失效)
+			pre = res.erase(pre, iter);
+			// 从新的单词开始
+			iter = pre;
+		}
+	}
+	return res;
+}
+
 
 

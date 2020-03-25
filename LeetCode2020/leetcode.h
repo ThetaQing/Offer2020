@@ -49,6 +49,7 @@ vector<int> twoSum(vector<int>& numbers, int target);
 int removeElement(vector<int>& nums, int val);
 int findMaxConsecutiveOnes(vector<int>& nums);
 int minSubArrayLen(int s, vector<int>& nums);
+string reverseWords(string s);
 #endif // !leetcode_h
 
 
