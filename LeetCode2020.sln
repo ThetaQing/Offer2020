@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LeetCode2020", "LeetCode2020\LeetCode2020.vcxproj", "{8C954D0F-C5EA-442A-BA97-776286633866}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Offer", "LeetCode2020\LeetCode2020.vcxproj", "{8C954D0F-C5EA-442A-BA97-776286633866}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dataStructure", "dataStructure\dataStructure.vcxproj", "{2198C3CC-2FDD-4E59-93C3-E7360969D1EB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphMatrix", "..\..\C++\dengjvnhui\dsa\src\graphmatrix\graphmatrix.vcxproj", "{5220DF1B-BE3A-4FD9-B16A-9A7DAE747BAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,20 @@ Global
 		{8C954D0F-C5EA-442A-BA97-776286633866}.Release|x64.Build.0 = Release|x64
 		{8C954D0F-C5EA-442A-BA97-776286633866}.Release|x86.ActiveCfg = Release|Win32
 		{8C954D0F-C5EA-442A-BA97-776286633866}.Release|x86.Build.0 = Release|Win32
+		{2198C3CC-2FDD-4E59-93C3-E7360969D1EB}.Debug|x64.ActiveCfg = Debug|x64
+		{2198C3CC-2FDD-4E59-93C3-E7360969D1EB}.Debug|x64.Build.0 = Debug|x64
+		{2198C3CC-2FDD-4E59-93C3-E7360969D1EB}.Debug|x86.ActiveCfg = Debug|Win32
+		{2198C3CC-2FDD-4E59-93C3-E7360969D1EB}.Debug|x86.Build.0 = Debug|Win32
+		{2198C3CC-2FDD-4E59-93C3-E7360969D1EB}.Release|x64.ActiveCfg = Release|x64
+		{2198C3CC-2FDD-4E59-93C3-E7360969D1EB}.Release|x64.Build.0 = Release|x64
+		{2198C3CC-2FDD-4E59-93C3-E7360969D1EB}.Release|x86.ActiveCfg = Release|Win32
+		{2198C3CC-2FDD-4E59-93C3-E7360969D1EB}.Release|x86.Build.0 = Release|Win32
+		{5220DF1B-BE3A-4FD9-B16A-9A7DAE747BAB}.Debug|x64.ActiveCfg = Debug|Win32
+		{5220DF1B-BE3A-4FD9-B16A-9A7DAE747BAB}.Debug|x86.ActiveCfg = Debug|Win32
+		{5220DF1B-BE3A-4FD9-B16A-9A7DAE747BAB}.Debug|x86.Build.0 = Debug|Win32
+		{5220DF1B-BE3A-4FD9-B16A-9A7DAE747BAB}.Release|x64.ActiveCfg = Release|Win32
+		{5220DF1B-BE3A-4FD9-B16A-9A7DAE747BAB}.Release|x86.ActiveCfg = Release|Win32
+		{5220DF1B-BE3A-4FD9-B16A-9A7DAE747BAB}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

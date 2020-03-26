@@ -64,9 +64,11 @@ int main(int argc, char** argv)
 	containsNearbyDuplicate(seq, 3);
 
 	string s = "abcabcdfbb";
-	lengthOfLongestSubstring(s);*/
-	vector<int> A = { 1, 2 }, B = { -2, -1 }, C = { -1, 2 }, D = { 0, 2 };
-	fourSumCount2(A, B, C, D);
+	lengthOfLongestSubstring(s);
+	string a = "11", b = "1";
+	addBinary(a, b);*/
+	vector<int> vec{1,2,3,4,5};
+	reverseWords("in");
 	cout << "OK";
 	
 	cin.get();
