@@ -793,5 +793,85 @@ string reverseWords(string s) {
 	return res;
 }
 
+/************函数说明****************
+* 问题描述：1162. 地图分析
+你现在手里有一份大小为 N x N 的『地图』（网格） grid，上面的每个『区域』（单元格）都用 0 和 1 标记好了。其中 0 代表海洋，1 代表陆地，你知道距离陆地区域最远的海洋区域是是哪一个吗？请返回该海洋区域到离它最近的陆地区域的距离。
 
+我们这里说的距离是『曼哈顿距离』（ Manhattan Distance）：(x0, y0) 和 (x1, y1) 这两个区域之间的距离是 |x0 - x1| + |y0 - y1| 。
+
+如果我们的地图上只有陆地或者海洋，请返回 -1。
+* 函数名：int maxDistance(vector<vector<int>>& grid)
+* 解决方案：
+遍历所有的海洋，每一个海洋都计算距离所有陆地的距离，并得到其中的距离最大值
+
+**/
+
+int maxDistance(vector<vector<int>>& grid)
+{
+	int max = -1, size = grid.size(), distance = 0;
+	for (int i = 0; i < size; ++i)	
+		for (int j = 0; j < size; ++j)		
+			if (!grid[i][j])  // 如果是海洋区域			
+			{
+				int min = size * 2;
+				for (int k = 0; k < size; ++k)
+				{
+					for (int l = 0; l < size; ++l)
+						if (grid[k][l])  // 如果是陆地						
+							min = min < abs(k - i) + abs(l - j) ? min : abs(k - i) + abs(l - j);  //该海洋与陆地的最近距离
+				}
+				max = max > min ? max : min;  // 求最小值中的最大值
+			}
+		
+	return max;
+}
+
+
+class Solution {
+public:
+	static constexpr int MAX_N = 100 + 5;
+	static constexpr int INF = int(1E6);
+
+	int f[MAX_N][MAX_N];  // 表示各个海洋区域到陆地的最近区域，若是陆地则为0
+	int n;
+
+	int maxDistance(vector<vector<int>>& grid) {
+		this->n = grid.size();
+		vector<vector<int>>& a = grid;
+		// 初始化，陆地f预置为0，海洋f预置为inf
+		for (int i = 0; i < n; ++i) {
+			for (int j = 0; j < n; ++j) {
+				f[i][j] = (a[i][j] ? 0 : INF);
+			}
+		}
+		// 从左上方向
+		for (int i = 0; i < n; ++i) {
+			for (int j = 0; j < n; ++j) {
+				if (a[i][j]) continue;  // 如果是陆地，为0
+				if (i - 1 >= 0) f[i][j] = min(f[i][j], f[i - 1][j] + 1);
+				if (j - 1 >= 0) f[i][j] = min(f[i][j], f[i][j - 1] + 1);
+			}
+		}
+		// 从右下方向
+		for (int i = n - 1; i >= 0; --i) {
+			for (int j = n - 1; j >= 0; --j) {
+				if (a[i][j]) continue;
+				if (i + 1 < n) f[i][j] = min(f[i][j], f[i + 1][j] + 1);
+				if (j + 1 < n) f[i][j] = min(f[i][j], f[i][j + 1] + 1);
+			}
+		}
+		// 求最大值
+		int ans = -1;
+		for (int i = 0; i < n; ++i) {
+			for (int j = 0; j < n; ++j) {
+				if (!a[i][j]) {
+					ans = max(ans, f[i][j]);
+				}
+			}
+		}
+
+		if (ans == INF) return -1;
+		else return ans;
+	}
+};
 

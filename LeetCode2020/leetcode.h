@@ -50,6 +50,7 @@ int removeElement(vector<int>& nums, int val);
 int findMaxConsecutiveOnes(vector<int>& nums);
 int minSubArrayLen(int s, vector<int>& nums);
 string reverseWords(string s);
+int maxDistance(vector<vector<int>>& grid);
 #endif // !leetcode_h
 
 
